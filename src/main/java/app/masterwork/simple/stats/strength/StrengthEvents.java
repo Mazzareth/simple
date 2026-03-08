@@ -27,13 +27,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 import app.masterwork.simple.stats.PlayerStats;
+import app.masterwork.simple.stats.progression.ProfessionXpRules;
+import app.masterwork.simple.stats.xp.BlockBreakXpContext;
+import app.masterwork.simple.stats.xp.XpRewards;
 
 public final class StrengthEvents {
     private static final long BLOCK_ACTION_COOLDOWN_TICKS = 40L;
@@ -73,7 +75,7 @@ public final class StrengthEvents {
 
         ServerPlayer player = meleeAttacker(source);
 
-        if (player == null || !canGainStrength(player)) {
+        if (player == null || !ProfessionXpRules.canGainGameplayXp(player)) {
             return;
         }
 
@@ -83,7 +85,7 @@ public final class StrengthEvents {
     private static void afterDeath(LivingEntity entity, DamageSource damageSource) {
         ServerPlayer player = meleeAttacker(damageSource);
 
-        if (player == null || !canGainStrength(player)) {
+        if (player == null || !ProfessionXpRules.canGainGameplayXp(player)) {
             return;
         }
 
@@ -91,11 +93,13 @@ public final class StrengthEvents {
     }
 
     private static void afterBlockBreak(Level level, Player player, BlockPos pos, BlockState state, net.minecraft.world.level.block.entity.BlockEntity blockEntity) {
-        if (!(player instanceof ServerPlayer serverPlayer) || !canGainStrength(serverPlayer)) {
+        if (!(player instanceof ServerPlayer serverPlayer) || !ProfessionXpRules.canGainGameplayXp(serverPlayer)) {
             return;
         }
 
-        if (!state.is(StrengthTags.TRAINING_BLOCKS) || !serverPlayer.hasCorrectToolForDrops(state)) {
+        BlockBreakXpContext context = BlockBreakXpContext.create(serverPlayer, state);
+
+        if (!context.correctToolForDrops() || !XpRewards.hasBlockBreakRewards(context)) {
             return;
         }
 
@@ -112,11 +116,11 @@ public final class StrengthEvents {
             return;
         }
 
-        PlayerStats.awardStrengthXp(serverPlayer, StrengthExperience.blockBreakXp());
+        XpRewards.awardBlockBreak(serverPlayer, context);
     }
 
     private static InteractionResult beforeUseBlock(Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
-        if (level.isClientSide() || !(player instanceof ServerPlayer serverPlayer) || !canGainStrength(serverPlayer)) {
+        if (level.isClientSide() || !(player instanceof ServerPlayer serverPlayer) || !ProfessionXpRules.canGainGameplayXp(serverPlayer)) {
             return InteractionResult.PASS;
         }
 
@@ -200,11 +204,6 @@ public final class StrengthEvents {
                 mapIterator.remove();
             }
         }
-    }
-
-    private static boolean canGainStrength(ServerPlayer player) {
-        GameType gameMode = player.gameMode.getGameModeForPlayer();
-        return gameMode == GameType.SURVIVAL || gameMode == GameType.ADVENTURE;
     }
 
     private static ServerPlayer meleeAttacker(DamageSource source) {

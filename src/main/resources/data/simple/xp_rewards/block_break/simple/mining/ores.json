@@ -1,0 +1,84 @@
+{
+  "entries": [
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:coal_ore"
+      },
+      "xp": 25,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:deepslate_coal_ore"
+      },
+      "xp": 25,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:copper_ore"
+      },
+      "xp": 25,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:deepslate_copper_ore"
+      },
+      "xp": 25,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:iron_ore"
+      },
+      "xp": 30,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:deepslate_iron_ore"
+      },
+      "xp": 30,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:lapis_ore"
+      },
+      "xp": 40,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:deepslate_lapis_ore"
+      },
+      "xp": 40,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:redstone_ore"
+      },
+      "xp": 45,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:deepslate_redstone_ore"
+      },
+      "xp": 45,
+      "priority": 0
+    }
+  ]
+}

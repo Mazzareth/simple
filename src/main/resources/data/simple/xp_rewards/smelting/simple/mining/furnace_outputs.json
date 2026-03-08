@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "match": {
+        "type": "item",
+        "id": "minecraft:copper_ingot"
+      },
+      "xp": 8,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "item",
+        "id": "minecraft:iron_ingot"
+      },
+      "xp": 8,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "item",
+        "id": "minecraft:gold_ingot"
+      },
+      "xp": 10,
+      "priority": 0
+    }
+  ]
+}

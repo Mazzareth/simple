@@ -3,7 +3,6 @@ package app.masterwork.simple.stats.strength;
 public final class StrengthExperience {
     private static final int MIN_DAMAGE_XP = 1;
     private static final int KILL_XP = 3;
-    private static final int BLOCK_BREAK_XP = 2;
     private static final int BLOCK_PLACE_XP = 1;
 
     private StrengthExperience() {
@@ -15,10 +14,6 @@ public final class StrengthExperience {
 
     public static int meleeKillXp() {
         return KILL_XP;
-    }
-
-    public static int blockBreakXp() {
-        return BLOCK_BREAK_XP;
     }
 
     public static int blockPlacementXp() {

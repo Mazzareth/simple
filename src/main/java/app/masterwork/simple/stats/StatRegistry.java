@@ -1,9 +1,7 @@
 package app.masterwork.simple.stats;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.resources.Identifier;
@@ -12,36 +10,32 @@ import app.masterwork.simple.stats.agility.AgilityStat;
 import app.masterwork.simple.stats.strength.StrengthStat;
 
 /**
- * Central registration and lookup point for all stats.
+ * Compatibility facade for the legacy stat entry points.
  */
 public final class StatRegistry {
-    private static final Map<Identifier, IStat<?>> STATS = new LinkedHashMap<>();
-
-    public static final AgilityStat AGILITY = register(new AgilityStat());
-    public static final StrengthStat STRENGTH = register(new StrengthStat());
+    public static final AgilityStat AGILITY = ProfessionRegistry.AGILITY;
+    public static final StrengthStat STRENGTH = ProfessionRegistry.STRENGTH;
 
     private StatRegistry() {
     }
 
     public static void bootstrap() {
-        // Deliberately empty. Accessing this class triggers static registration.
+        ProfessionRegistry.bootstrap();
     }
 
     public static Collection<IStat<?>> all() {
-        return Collections.unmodifiableCollection(STATS.values());
+        return List.of((IStat<?>) AGILITY, STRENGTH);
     }
 
     public static Optional<IStat<?>> byId(Identifier id) {
-        return Optional.ofNullable(STATS.get(id));
-    }
-
-    private static <T, S extends IStat<T>> S register(S stat) {
-        IStat<?> previous = STATS.putIfAbsent(stat.id(), stat);
-
-        if (previous != null) {
-            throw new IllegalStateException("Duplicate stat id: " + stat.id());
+        if (AGILITY.id().equals(id)) {
+            return Optional.of(AGILITY);
         }
 
-        return stat;
+        if (STRENGTH.id().equals(id)) {
+            return Optional.of(STRENGTH);
+        }
+
+        return Optional.empty();
     }
 }

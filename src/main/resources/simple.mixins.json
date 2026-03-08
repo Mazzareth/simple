@@ -4,6 +4,8 @@
   "package": "app.masterwork.simple.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "FurnaceResultSlotMixin",
+    "SlotAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

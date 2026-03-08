@@ -1,0 +1,92 @@
+{
+  "entries": [
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:stone"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:cobblestone"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:granite"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:diorite"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:andesite"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:deepslate"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:cobbled_deepslate"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:tuff"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:blackstone"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:basalt"
+      },
+      "xp": 2,
+      "priority": 0
+    },
+    {
+      "match": {
+        "type": "block",
+        "id": "minecraft:obsidian"
+      },
+      "xp": 2,
+      "priority": 0
+    }
+  ]
+}

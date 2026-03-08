@@ -1,0 +1,12 @@
+{
+  "entries": [
+    {
+      "match": {
+        "type": "item",
+        "id": "minecraft:charcoal"
+      },
+      "xp": 10,
+      "priority": 0
+    }
+  ]
+}

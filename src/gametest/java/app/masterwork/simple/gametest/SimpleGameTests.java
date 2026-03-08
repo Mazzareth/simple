@@ -12,6 +12,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 
+import app.masterwork.simple.stats.PlayerStats;
+import app.masterwork.simple.stats.ProfessionRegistry;
 import app.masterwork.simple.stats.StatRegistry;
 import app.masterwork.simple.stats.progression.ProfessionProgress;
 import app.masterwork.simple.stats.progression.ProfessionProgression;
@@ -78,6 +80,19 @@ public final class SimpleGameTests {
     }
 
     @GameTest
+    public void genericProfessionAwardUpdatesNewTrack(GameTestHelper helper) {
+        helper.runAfterDelay(1, () -> {
+            ServerPlayer player = helper.makeMockServerPlayerInLevel();
+            PlayerStats.awardXp(player, ProfessionRegistry.WOODCUTTING.id(), 140);
+
+            ProfessionProgress progress = PlayerStats.getProgress(player, ProfessionRegistry.WOODCUTTING.id());
+
+            helper.assertValueEqual(1, progress.level(), "generic xp awards should level up new professions");
+            helper.assertValueEqual(40, progress.xp(), "generic xp awards should keep rollover xp");
+            helper.succeed();
+        });
+    }
+
     public void thirstIsNotRegistered(GameTestHelper helper) {
         helper.assertTrue(StatRegistry.byId(Identifier.parse("simple:thirst")).isEmpty(), "Thirst should not be registered");
         helper.succeed();

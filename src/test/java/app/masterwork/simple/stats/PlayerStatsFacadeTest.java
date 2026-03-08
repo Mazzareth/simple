@@ -24,4 +24,12 @@ class PlayerStatsFacadeTest {
 
         assertFalse(hasThirstMethod);
     }
+
+    @Test
+    void newProfessionTracksUseTheGenericRegistry() {
+        assertTrue(ProfessionRegistry.byId(Identifier.parse("simple:quarrying")).isPresent());
+        assertTrue(ProfessionRegistry.byId(Identifier.parse("simple:mining")).isPresent());
+        assertTrue(ProfessionRegistry.byId(Identifier.parse("simple:woodcutting")).isPresent());
+        assertTrue(StatRegistry.byId(Identifier.parse("simple:quarrying")).isEmpty());
+    }
 }
