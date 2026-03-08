@@ -1,24 +1,24 @@
 package app.masterwork.simple.stats.agility;
 
+import app.masterwork.simple.stats.progression.ProfessionProgression;
+
 public final class AgilityBonuses {
-    private static final double DODGE_CHANCE_PER_POINT = 0.0025D;
-    private static final double MAX_DODGE_CHANCE = 0.35D;
-    private static final double SPEED_BONUS_PER_POINT = 0.01D;
-    private static final double MAX_SPEED_BONUS = 0.50D;
+    private static final double MAX_MOVEMENT_SPEED_BONUS = 0.20D;
+    private static final double MAX_STEP_HEIGHT_BONUS = 0.50D;
+    private static final double MAX_SAFE_FALL_BONUS = 3.0D;
 
     private AgilityBonuses() {
     }
 
-    public static double dodgeChance(int agility) {
-        return clamp(agility * DODGE_CHANCE_PER_POINT, 0.0D, MAX_DODGE_CHANCE);
+    public static double movementSpeedBonus(int level) {
+        return ProfessionProgression.levelRatio(level) * MAX_MOVEMENT_SPEED_BONUS;
     }
 
-    public static double movementSpeedMultiplier(int agility) {
-        double bonus = clamp(agility * SPEED_BONUS_PER_POINT, 0.0D, MAX_SPEED_BONUS);
-        return 1.0D + bonus;
+    public static double stepHeightBonus(int level) {
+        return ProfessionProgression.levelRatio(level) * MAX_STEP_HEIGHT_BONUS;
     }
 
-    private static double clamp(double value, double min, double max) {
-        return Math.max(min, Math.min(max, value));
+    public static double safeFallBonus(int level) {
+        return ProfessionProgression.levelRatio(level) * MAX_SAFE_FALL_BONUS;
     }
 }

@@ -1,20 +1,17 @@
 package app.masterwork.simple.stats.agility;
 
-import com.mojang.serialization.Codec;
+import net.minecraft.server.level.ServerPlayer;
 
-import app.masterwork.simple.stats.AbstractStat;
+import app.masterwork.simple.stats.progression.ProfessionProgress;
+import app.masterwork.simple.stats.progression.ProfessionStat;
 
-public final class AgilityStat extends AbstractStat<Integer> {
-    private static final int MIN_VALUE = 0;
-    private static final int MAX_VALUE = 200;
-
+public final class AgilityStat extends ProfessionStat {
     public AgilityStat() {
-        super("agility", Codec.INT, 0);
+        super("agility");
     }
 
     @Override
-    protected Integer sanitize(Integer value) {
-        int v = super.sanitize(value);
-        return Math.max(MIN_VALUE, Math.min(MAX_VALUE, v));
+    protected void onProgressChanged(ServerPlayer player, ProfessionProgress oldValue, ProfessionProgress newValue) {
+        AgilityEffects.apply(player, newValue);
     }
 }

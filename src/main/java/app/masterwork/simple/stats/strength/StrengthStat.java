@@ -1,20 +1,17 @@
 package app.masterwork.simple.stats.strength;
 
-import com.mojang.serialization.Codec;
+import net.minecraft.server.level.ServerPlayer;
 
-import app.masterwork.simple.stats.AbstractStat;
+import app.masterwork.simple.stats.progression.ProfessionProgress;
+import app.masterwork.simple.stats.progression.ProfessionStat;
 
-public final class StrengthStat extends AbstractStat<Integer> {
-    private static final int MIN_VALUE = 0;
-    private static final int MAX_VALUE = 200;
-
+public final class StrengthStat extends ProfessionStat {
     public StrengthStat() {
-        super("strength", Codec.INT, 0);
+        super("strength");
     }
 
     @Override
-    protected Integer sanitize(Integer value) {
-        int v = super.sanitize(value);
-        return Math.max(MIN_VALUE, Math.min(MAX_VALUE, v));
+    protected void onProgressChanged(ServerPlayer player, ProfessionProgress oldValue, ProfessionProgress newValue) {
+        StrengthEffects.apply(player, newValue);
     }
 }

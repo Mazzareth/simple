@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:andesite",
+    "minecraft:cobbled_deepslate",
+    "minecraft:cobblestone",
+    "minecraft:coal_ore",
+    "minecraft:deepslate",
+    "minecraft:deepslate_coal_ore",
+    "minecraft:deepslate_iron_ore",
+    "minecraft:diorite",
+    "minecraft:granite",
+    "minecraft:iron_ore",
+    "minecraft:stone"
+  ]
+}

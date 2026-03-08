@@ -9,7 +9,6 @@ import java.util.Optional;
 import net.minecraft.resources.Identifier;
 
 import app.masterwork.simple.stats.agility.AgilityStat;
-import app.masterwork.simple.stats.impl.ThirstStat;
 import app.masterwork.simple.stats.strength.StrengthStat;
 
 /**
@@ -20,7 +19,6 @@ public final class StatRegistry {
 
     public static final AgilityStat AGILITY = register(new AgilityStat());
     public static final StrengthStat STRENGTH = register(new StrengthStat());
-    public static final ThirstStat THIRST = register(new ThirstStat());
 
     private StatRegistry() {
     }

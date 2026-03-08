@@ -1,59 +1,48 @@
 package app.masterwork.simple.stats;
 
-import java.util.Objects;
-import java.util.function.UnaryOperator;
-
 import net.minecraft.server.level.ServerPlayer;
 
 import app.masterwork.simple.stats.agility.AgilityData;
+import app.masterwork.simple.stats.progression.ProfessionProgress;
+import app.masterwork.simple.stats.progression.ProfessionProgression;
+import app.masterwork.simple.stats.strength.StrengthData;
 
 /**
- * Player-facing facade for stat access.
+ * Player-facing facade for stat progression and derived effects.
  */
 public final class PlayerStats {
     private PlayerStats() {
     }
 
-    public static <T> T get(ServerPlayer player, IStat<T> stat) {
-        Objects.requireNonNull(stat, "stat");
-        return stat.get(player);
-    }
-
-    public static <T> void set(ServerPlayer player, IStat<T> stat, T value) {
-        Objects.requireNonNull(stat, "stat");
-        stat.set(player, value);
-    }
-
-    public static <T> T modify(ServerPlayer player, IStat<T> stat, UnaryOperator<T> modifier) {
-        Objects.requireNonNull(stat, "stat");
-        return stat.modify(player, modifier);
-    }
-
-    public static int agility(ServerPlayer player) {
+    public static ProfessionProgress agilityProgress(ServerPlayer player) {
         return StatRegistry.AGILITY.get(player);
     }
 
-    public static void agility(ServerPlayer player, int value) {
-        StatRegistry.AGILITY.set(player, value);
+    public static ProfessionProgress awardAgilityXp(ServerPlayer player, int amount) {
+        if (amount <= 0) {
+            return agilityProgress(player);
+        }
+
+        return StatRegistry.AGILITY.modify(player, progress -> ProfessionProgression.grantXp(progress, amount));
     }
 
     public static AgilityData agilityData(ServerPlayer player) {
         return AgilityData.fromPlayer(player);
     }
 
-    public static int strength(ServerPlayer player) {
+    public static ProfessionProgress strengthProgress(ServerPlayer player) {
         return StatRegistry.STRENGTH.get(player);
     }
 
-    public static void strength(ServerPlayer player, int value) {
-        StatRegistry.STRENGTH.set(player, value);
+    public static ProfessionProgress awardStrengthXp(ServerPlayer player, int amount) {
+        if (amount <= 0) {
+            return strengthProgress(player);
+        }
+
+        return StatRegistry.STRENGTH.modify(player, progress -> ProfessionProgression.grantXp(progress, amount));
     }
 
-    public static int thirst(ServerPlayer player) {
-        return StatRegistry.THIRST.get(player);
-    }
-
-    public static void thirst(ServerPlayer player, int value) {
-        StatRegistry.THIRST.set(player, value);
+    public static StrengthData strengthData(ServerPlayer player) {
+        return StrengthData.fromPlayer(player);
     }
 }

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "simple-gametest",
+  "version": "1.0.0",
+  "name": "simple gametests",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": [
+      "app.masterwork.simple.gametest.SimpleGameTests"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "fabric-api": "*",
+    "minecraft": "*"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:planks",
+    "#minecraft:logs",
+    "minecraft:stone",
+    "minecraft:cobblestone",
+    "minecraft:smooth_stone",
+    "minecraft:stone_bricks",
+    "minecraft:bricks",
+    "minecraft:deepslate_bricks",
+    "minecraft:deepslate_tiles",
+    "minecraft:terracotta"
+  ]
+}
