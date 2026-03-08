@@ -1,0 +1,15 @@
+Simple-Idea.txt
+overview: 
+Mod that performs a similar function to pmmo or runescape profession leveling, adds a bunch of passive stat buffs for tasks based off experience gained by performing the specific task (i.e chopping trees gives experience in the lumbering profession, and a level in the lumbering profession might give +2% wood chop speed).
+
+Profession Ideas:
+Agility: running
+Quarrying: mining stone
+Mining: mining ore
+Excavation: digging dirt, sand, etc
+Fishing: ....fishing
+Farming: planting crops
+Building: placing blocks
+Magic: enchanting
+Swimming: swimming
+Combat: dealing dmg to hostile mods
