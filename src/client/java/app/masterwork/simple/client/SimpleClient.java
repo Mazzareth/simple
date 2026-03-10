@@ -9,8 +9,9 @@ import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 
 import app.masterwork.simple.Simple;
+import app.masterwork.simple.client.stats.BMenuScreen;
+import app.masterwork.simple.client.stats.ClientPlayerSkills;
 import app.masterwork.simple.client.stats.ClientPlayerStats;
-import app.masterwork.simple.client.stats.PlayerStatsScreen;
 
 public class SimpleClient implements ClientModInitializer {
     private static final KeyMapping OPEN_STATS_SCREEN = KeyMappingHelper.registerKeyMapping(
@@ -24,6 +25,7 @@ public class SimpleClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        ClientPlayerSkills.register();
         ClientPlayerStats.register();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -32,7 +34,7 @@ public class SimpleClient implements ClientModInitializer {
                     continue;
                 }
 
-                client.setScreen(new PlayerStatsScreen());
+                client.setScreen(new BMenuScreen());
             }
         });
     }

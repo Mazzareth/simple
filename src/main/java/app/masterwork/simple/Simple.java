@@ -3,6 +3,10 @@ package app.masterwork.simple;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
 
+import app.masterwork.simple.skills.SkillCommands;
+import app.masterwork.simple.skills.SkillProfileRegistry;
+import app.masterwork.simple.skills.SkillRegistry;
+import app.masterwork.simple.skills.sync.PlayerSkillsNetworking;
 import app.masterwork.simple.stats.ProfessionRegistry;
 import app.masterwork.simple.stats.PlayerStatEffects;
 import app.masterwork.simple.stats.agility.AgilityEvents;
@@ -20,10 +24,14 @@ public class Simple implements ModInitializer {
     @Override
     public void onInitialize() {
         ProfessionRegistry.bootstrap();
+        SkillRegistry.bootstrap();
+        SkillProfileRegistry.bootstrap();
         PlayerStatsNetworking.register();
+        PlayerSkillsNetworking.register();
         XpRewards.register();
         PlayerStatEffects.register();
         AgilityEvents.register();
         StrengthEvents.register();
+        SkillCommands.register();
     }
 }
