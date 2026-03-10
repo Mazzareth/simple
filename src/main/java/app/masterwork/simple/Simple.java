@@ -7,6 +7,7 @@ import app.masterwork.simple.stats.ProfessionRegistry;
 import app.masterwork.simple.stats.PlayerStatEffects;
 import app.masterwork.simple.stats.agility.AgilityEvents;
 import app.masterwork.simple.stats.strength.StrengthEvents;
+import app.masterwork.simple.stats.sync.PlayerStatsNetworking;
 import app.masterwork.simple.stats.xp.XpRewards;
 
 public class Simple implements ModInitializer {
@@ -19,6 +20,7 @@ public class Simple implements ModInitializer {
     @Override
     public void onInitialize() {
         ProfessionRegistry.bootstrap();
+        PlayerStatsNetworking.register();
         XpRewards.register();
         PlayerStatEffects.register();
         AgilityEvents.register();

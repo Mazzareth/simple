@@ -2,6 +2,9 @@ package app.masterwork.simple.stats.progression;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 
 public record ProfessionProgress(int level, int xp) {
     private static final Codec<ProfessionProgress> BASE_CODEC = RecordCodecBuilder.create(instance -> instance.group(
@@ -13,5 +16,12 @@ public record ProfessionProgress(int level, int xp) {
     public static final Codec<ProfessionProgress> CODEC = BASE_CODEC.xmap(
             ProfessionProgression::sanitize,
             ProfessionProgression::sanitize
+    );
+    public static final StreamCodec<RegistryFriendlyByteBuf, ProfessionProgress> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.VAR_INT,
+            ProfessionProgress::level,
+            ByteBufCodecs.VAR_INT,
+            ProfessionProgress::xp,
+            ProfessionProgress::new
     );
 }
